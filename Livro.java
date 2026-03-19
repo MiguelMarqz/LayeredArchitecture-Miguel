@@ -2,7 +2,7 @@ public class Livro {
     private int id;
     private String nome;
     private String autor;
-    private int edicao;
+    private double edicao;
     private int quantidade;
 
     public Livro() {

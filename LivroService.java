@@ -12,24 +12,36 @@ public class LivroService {
     }
 
     public Livro cadastrar(Livro livro) {
-        return null;
+        // Validação básica antes de salvar
+        if (livro.getNome() == null || livro.getNome().trim().isEmpty()) {
+            throw new IllegalArgumentException("O nome do livro não pode ser vazio.");
+        }
+        if (livro.getQuantidade() < 0) {
+            throw new IllegalArgumentException("A quantidade em estoque não pode ser negativa.");
+        }
+        return livroRepository.salvar(livro);
     }
 
     public Livro buscarPorId(int id) {
-        return null;
+        return livroRepository.buscarPorId(id);
     }
 
     public List<Livro> buscarPorNome(String nome) {
-        return null;
+        return livroRepository.buscarPorNome(nome);
     }
 
     public List<Livro> listarTodos() {
-        return null;
+        return livroRepository.listarTodos();
     }
 
     public void alterar(Livro livro) {
+        if (livro.getId() <= 0) {
+            throw new IllegalArgumentException("ID do livro inválido para alteração.");
+        }
+        livroRepository.atualizar(livro);
     }
 
     public void remover(int id) {
+        livroRepository.deletar(id);
     }
 }
